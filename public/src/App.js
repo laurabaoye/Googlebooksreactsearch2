@@ -1,6 +1,12 @@
 import React from "react";
 
 function App() {
+
+    const handleChange = (e) => {
+        console.log(e.target.value);
+
+    }
+
     return (
         <div>
             <div className="jumbotron text-center bg-info">
@@ -8,7 +14,7 @@ function App() {
             </div>
             <div className="input-group mb-3">
                 <input
-                    onChange={"handleChange"}
+                    onChange={handleChange}
                     className="form-control"
                     placeholder="Search for"
                     type="text"
