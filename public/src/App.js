@@ -6,7 +6,12 @@ function App() {
     const [book, setBook] = useState()
     //create api hook
     const [apiKey, setApikey] = useState("AIzaSyDAHtSMIvpUKu0lEjtRH6i7a45w5S9zdVY")
+    //create a hook for result 
+    const [apiRes, setApires] = useState([])
+
+
     const searchUrl = `https://www.googleapis.com/books/v1/volumes?q=${book}&key=${apiKey}`
+
 
     const handleChange = (e) => {
         console.log(e.target.value);
@@ -18,7 +23,8 @@ function App() {
         console.log(book);
 
         axios.get(searchUrl).then(res => {
-            console.log(res)
+            console.log(res.data.items)
+            setApires(res.data.items);
         }).catch(err => console.log(err))
     }
 
@@ -42,6 +48,28 @@ function App() {
                         submit
                         </button>
                 </div>
+            </div>
+            <div className="row">
+                {apiRes.map(book => (
+                    <div
+                        key={book.id}
+                        className="card col-xs-6 col-sm-4 col-md-3 col-lg-2 mt-5 mb-5"
+                        style={{ width: "18rem", margin: "0 10px" }}
+                    >
+                        <a href={book.volumeInfo.previewLink}>
+                            <img
+                                className="card-img-top mb-3"
+                                src={book.volumeInfo.imageLinks.thumbnail}
+                                alt="Card image cap"
+                            />
+                        </a>
+                        <div
+                            className="card-body"
+                            style={{ position: "relative" }}
+                        >
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
 
