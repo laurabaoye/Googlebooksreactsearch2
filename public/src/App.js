@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 function App() {
+    //create a hook
+    const [book, setBook] = useState()
 
     const handleChange = (e) => {
         console.log(e.target.value);
+        setBook(e.target.value)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(book);
 
     }
 
@@ -21,7 +29,7 @@ function App() {
                 />
                 <div className="input-group-append">
                     <button
-                        onClick={"handleSubmit"}
+                        onClick={handleSubmit}
                         className="btn btn-outline-secondary"
                     >
                         submit
