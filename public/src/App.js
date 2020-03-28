@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import axios from 'axios';
 
 function App() {
     //create a hook
     const [book, setBook] = useState()
+    //create api hook
+    const [apiKey, setApikey] = useState("AIzaSyDAHtSMIvpUKu0lEjtRH6i7a45w5S9zdVY")
+    const searchUrl = `https://www.googleapis.com/books/v1/volumes?q=${book}&key=${apiKey}`
 
     const handleChange = (e) => {
         console.log(e.target.value);
@@ -13,6 +17,9 @@ function App() {
         e.preventDefault()
         console.log(book);
 
+        axios.get(searchUrl).then(res => {
+            console.log(res)
+        }).catch(err => console.log(err))
     }
 
     return (
